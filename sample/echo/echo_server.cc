@@ -15,9 +15,9 @@ private:
                     goya::rpc::echo::EchoResponse* response,
                     google::protobuf::Closure* done) 
   {
-    std::cout << request->message() << std::endl;
+    std::cout << "server received client msg: " << request->message() << std::endl;
     response->set_message(
-      "received message: ***" + request->message() + std::string("***"));
+      "server say: received msg: ***" + request->message() + std::string("***"));
     done->Run();
   }
 };

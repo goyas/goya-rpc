@@ -1,6 +1,6 @@
 #include "boost/make_shared.hpp"
+#include "google/protobuf/message.h"
 #include "rpc_channel_impl.h"
-#include "rpc.pb.h"
 
 namespace goya {
 namespace rpc {
@@ -27,22 +27,9 @@ void RpcChannelImpl::CallMethod(const ::google::protobuf::MethodDescriptor* meth
   ::google::protobuf::Closure* done) 
 {
   std::string request_data = request->SerializeAsString();
-  RpcData rpc_data;
-  rpc_data.set_service_name(method->service()->name());
-  rpc_data.set_method_name(method->name());
-  rpc_data.set_data_size(request_data.size());
+  socket_->send(boost::asio::buffer(request_data));
 
-  std::string rpc_serialized_data = rpc_data.SerializeAsString();
-  int rpc_serialized_size = rpc_serialized_data.size();
-  rpc_serialized_data.insert(0, std::string((const char*)&rpc_serialized_size, sizeof(int)));
-  rpc_serialized_data += request_data;
-
-  socket_->send(boost::asio::buffer(rpc_serialized_data));
-
-  char resp_data_size[sizeof(int)];
-  socket_->receive(boost::asio::buffer(resp_data_size));
-
-  int  resp_data_len = *(int*)resp_data_size;
+  int  resp_data_len = 256;
   std::vector<char> resp_data(resp_data_len, 0);
   socket_->receive(boost::asio::buffer(resp_data));
 

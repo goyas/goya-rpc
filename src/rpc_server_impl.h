@@ -23,21 +23,16 @@ public:
   bool Start(std::string& server_addr);
   bool RegisterService(google::protobuf::Service* service, bool ownership);
   
-  void ProcRpcData(const std::string& service_name,
-    const std::string& method_name,
-    const std::string& serialzied_data,
+  void ProcRpcData(const std::string& serialzied_data,
     const boost::shared_ptr<boost::asio::ip::tcp::socket>& socket);
   
-  void OnCallbackDone(
-    ::google::protobuf::Message* resp_msg,
+  void OnCallbackDone(::google::protobuf::Message* resp_msg,
     const boost::shared_ptr<boost::asio::ip::tcp::socket> socket);
-
-  void packet_message(const ::google::protobuf::Message* msg,
-    std::string* serialized_data) ;
   
 private:
   std::string   server_addr_;
-  std::map<std::string, ServiceInfo> m_services_;
+  //std::map<std::string, ServiceInfo> m_services_;
+  google::protobuf::Service* services_[1];
 };
 
 }
