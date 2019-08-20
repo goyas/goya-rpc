@@ -49,6 +49,7 @@ if [ ! -d build ]; then
 fi
 
 pushd $BASE/build
-cmake .. && make 
+cmake .. && make && make install
+cp -rf $BASE/include $BASE/build 
 
 

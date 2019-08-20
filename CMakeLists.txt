@@ -14,5 +14,6 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/install/include)
 #添加库文件搜索路径，相当于makefile里面的-L
 link_directories(${PROJECT_SOURCE_DIR}/thirdparty/install/lib)
 
+include(config.cmake)
 add_subdirectory(src)
 add_subdirectory(sample/echo)
