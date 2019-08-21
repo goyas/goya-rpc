@@ -36,5 +36,5 @@ message(STATUS "***proto sources: ***" ${PROTOSRCS})
 add_library(goya-rpc ${src_list} ${head_list} ${PROTOSRCS})
 
 message(STATUS "***install prefix: ***" ${CMAKE_INSTALL_PREFIX}) 
-install(FILES rpc_channel.h rpc_server.h rpc_controller.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/goya-rpc)
+install(FILES rpc_channel.h rpc_server.h rpc_controller.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/goya/rpc)
 install(FILES ${LIBRARY_OUTPUT_PATH}/libgoya-rpc.a  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)

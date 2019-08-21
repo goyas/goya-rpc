@@ -1,3 +1,4 @@
+#include <iostream>
 #include "boost/make_shared.hpp"
 #include "google/protobuf/message.h"
 #include "rpc_channel_impl.h"
@@ -17,7 +18,11 @@ void RpcChannelImpl::Init(std::string& server_addr)
   boost::asio::ip::tcp::endpoint ep(
     boost::asio::ip::address::from_string(ip), std::stoi(port));
 
-  socket_->connect(ep);
+  try {
+	socket_->connect(ep);  
+  } catch (boost::system::system_error ec) {
+	std::cout << "connect fail, error code: " << ec.code() << std::endl;  
+  }
 }
 
 void RpcChannelImpl::CallMethod(const ::google::protobuf::MethodDescriptor* method, 
