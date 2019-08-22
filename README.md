@@ -1,9 +1,9 @@
 基于protobuf的rpc框架
 
-* 1 编译、链接 *
+**1 编译、链接**  
 ./autobuild.sh
 
-* 2 测试 *
+**2 测试**  
 cd sample/echo  
 client:  
 ./echo_client 127.0.0.1 12321  
