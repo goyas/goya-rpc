@@ -1,7 +1,7 @@
 基于protobuf的rpc框架
 
-**1 编译、链接**  
-./autobuild.sh
+**1 一键式编译、链接**  
+./onekeybuild.sh
 
 **2 测试**  
 cd sample/echo  
