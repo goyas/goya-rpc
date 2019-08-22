@@ -19,9 +19,9 @@ void RpcChannelImpl::Init(std::string& server_addr)
     boost::asio::ip::address::from_string(ip), std::stoi(port));
 
   try {
-	socket_->connect(ep);  
+    socket_->connect(ep);  
   } catch (boost::system::system_error ec) {
-	std::cout << "connect fail, error code: " << ec.code() << std::endl;  
+    std::cout << "connect fail, error code: " << ec.code() << std::endl;  
   }
 }
 
