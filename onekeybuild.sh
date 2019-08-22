@@ -31,7 +31,9 @@ pushd $DEPS
 if [ ! -f "${DEPS_PREFIX}/lib/libboost_system.a" ] \
   || [ ! -d "${DEPS_PREFIX}/include/boost" ]; then
   rm -rf boost_1_57_0
-  wget https://raw.githubusercontent.com/lylei9/boost_1_57_0/master/boost_1_57_0.tar.gz
+  if [ ! -f boost_1_57_0.tar.gz ]; then
+    wget https://raw.githubusercontent.com/lylei9/boost_1_57_0/master/boost_1_57_0.tar.gz
+  fi
   tar zxvf boost_1_57_0.tar.gz
   cd boost_1_57_0
   ./bootstrap.sh --with-libraries=all --with-toolset=gcc
