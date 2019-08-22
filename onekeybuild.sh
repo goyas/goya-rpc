@@ -40,6 +40,7 @@ if [ ! -f "${DEPS_PREFIX}/lib/libboost_system.a" ] \
   sudo ldconfig
   #rm -rf ${DEPS_PREFIX}/boost_1_57_0
   #mv boost_1_57_0 ${DEPS_PREFIX}/boost_1_57_0
+  cd -
   rm boost_1_57_0.tar.gz
 fi
 popd
