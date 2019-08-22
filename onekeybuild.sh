@@ -51,6 +51,3 @@ fi
 
 pushd $BASE/build
 cmake .. && make && make install
-cp -rf $BASE/include $BASE/build 
-
-
