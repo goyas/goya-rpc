@@ -23,7 +23,9 @@ public:
   bool Start(std::string& server_addr);
   bool RegisterService(google::protobuf::Service* service, bool ownership);
   
-  void ProcRpcData(const std::string& serialzied_data,
+  void ProcRpcData(const std::string& service_id,
+    const std::string& method_id,
+    const std::string& serialzied_data,
     const boost::shared_ptr<boost::asio::ip::tcp::socket>& socket);
   
   void OnCallbackDone(::google::protobuf::Message* resp_msg,
@@ -31,8 +33,11 @@ public:
   
 private:
   std::string   server_addr_;
-  //std::map<std::string, ServiceInfo> m_services_;
-  google::protobuf::Service* services_[1];
+  struct ServiceInfo {
+    ::google::protobuf::Service* service_;
+    std::map <std::string, const ::google::protobuf::MethodDescriptor*> mdescriptor_;
+  };
+  std::map<std::string, ServiceInfo> services_;
 };
 
 }

@@ -14,15 +14,15 @@ mkdir -p ${DEPS_PREFIX} ${DEPS_SOURCE}
 pushd $DEPS
 if [ ! -f "${DEPS_PREFIX}/lib/libprotobuf.a" ] \
   || [ ! -d "${DEPS_PREFIX}/include/google/protobuf" ]; then
-  rm -rf protobuf-2.6.1
-  wget https://github.com/protocolbuffers/protobuf/archive/v2.6.1.tar.gz
-  tar zxvf v2.6.1.tar.gz
-  cd protobuf-2.6.1
+  rm -rf protobuf-3.9.1
+  wget https://github.com/protocolbuffers/protobuf/releases/download/v3.9.1/protobuf-cpp-3.9.1.tar.gz
+  tar zxvf protobuf-cpp-3.9.1.tar.gz
+  cd protobuf-3.9.1
   autoreconf -ivf
   ./configure --prefix=${DEPS_PREFIX}/
   make -j4 && make install
   cd -
-  rm v2.6.1.tar.gz
+  rm protobuf-cpp-3.9.1.tar.gz
 fi
 popd
 
