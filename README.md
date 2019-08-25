@@ -4,7 +4,7 @@
 ./onekeybuild.sh
 
 **2 测试**  
-cd sample/echo  
+cd build/bin 
 client:  
 ./echo_client 127.0.0.1 12321  
 server:  
